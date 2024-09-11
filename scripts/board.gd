@@ -3,7 +3,9 @@ extends Node2D
 var size : Vector2 = Vector2.ONE * 128
 var pieces_range : Vector2i = Vector2i.ONE * 3
 var image_path : String = 'res://icon.svg'
-var points
+var movements : int
+var points : int
+
 @export var piece_scene : PackedScene
 
 func _ready():
@@ -32,4 +34,12 @@ func _generate_pieces() -> void:
 			piece.size = piece_size
 			piece.correct_position = Vector2i(i, j)
 			piece.position = Vector2(i * piece_size.x, j * piece_size.y)
+			piece.moved.connect(_on_piece_moved)
 			add_child(piece)
+
+func _on_piece_moved(current_position, correct_position):
+	movements += 1
+	if current_position == correct_position:
+		points += 1
+	else:
+		points -= 1

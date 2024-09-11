@@ -1,7 +1,6 @@
 extends Area2D
-class_name Piece
 
-signal in_correct_position
+signal moved(current_position, correct_position)
 
 var size : Vector2
 var current_position : Vector2i
@@ -29,27 +28,23 @@ func _set_raycasts() -> void:
 		raycast2d.collide_with_areas = true
 		raycast2d.target_position.y = (size.x / 2) + 10
 		raycast2d.target_position = raycast2d.target_position.rotated(i * (PI/2))
-		raycast2d.add_to_group('raycast')
 		add_child(raycast2d)
 
 func _get_free_direction() -> Vector2:
 	var array_raycasts = []
 	for child in get_children():
 		if child is RayCast2D:
-			array_raycasts.append(child)
-
-	for raycast2d in array_raycasts:
-		if not raycast2d.is_colliding:
-			return raycast2d.target_position.normalized()
+			if not child.is_colliding():
+				return child.target_position.normalized()
 
 	return Vector2.ZERO
 
 func _try_move() -> void:
 	var direction = _get_free_direction()
-	current_position += Vector2i(direction)
-	if current_position == correct_position:
-		in_correct_position.emit()
-	position += direction * size
+	if direction:
+		current_position += Vector2i(direction)
+		moved.emit(current_position, correct_position)
+		position += Vector2(direction.x * size.x, direction.y * size.y)
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
