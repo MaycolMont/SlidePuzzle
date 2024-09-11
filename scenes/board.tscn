@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://0j4ckdircxvg"]
+
+[ext_resource type="Script" path="res://scripts/board.gd" id="1_s34ml"]
+[ext_resource type="PackedScene" uid="uid://ykamcttr3qhc" path="res://scenes/piece.tscn" id="2_b3pwp"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4uilb"]
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_s34ml")
+piece_scene = ExtResource("2_b3pwp")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("SegmentShape2D_4uilb")
