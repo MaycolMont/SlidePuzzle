@@ -3,9 +3,10 @@ extends Area2D
 signal moved(current_position, correct_position)
 
 var size : Vector2
-var current_position : Vector2i
-var correct_position : Vector2i
+var current_position : Vector2
+var correct_position : Vector2
 var image_path : String
+var in_correct_position : bool
 
 func _ready():
 	_set_dimensions()
@@ -19,7 +20,7 @@ func _set_dimensions() -> void:
 	var texture_resource = load(image_path)
 	var sprite = $Sprite2D
 	sprite.texture = texture_resource
-	var region_position = Vector2(correct_position.x * size.x, correct_position.y * size.y)
+	var region_position = Utils.vector_product(correct_position, size)
 	sprite.region_rect = Rect2(region_position, size)
 
 func _set_raycasts() -> void:
@@ -42,9 +43,11 @@ func _get_free_direction() -> Vector2:
 func _try_move() -> void:
 	var direction = _get_free_direction()
 	if direction:
-		current_position += Vector2i(direction)
-		moved.emit(current_position, correct_position)
-		position += Vector2(direction.x * size.x, direction.y * size.y)
+		var was_correct_position = correct_position == current_position
+		current_position += direction
+		var current_correct = correct_position == current_position
+		moved.emit(current_correct, was_correct_position)
+		position += Utils.vector_product(direction, size)
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
