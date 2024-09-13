@@ -1,23 +1,32 @@
 extends Node2D
 
+"""
+A piece
+
+Parameter
+---------
+size
+	size of the board
+
+"""
+
+signal solved(number_of_movements)
+
 var size : Vector2 = Vector2.ONE * 128
 var pieces_range : Vector2i = Vector2i.ONE * 3
 var image_path : String = 'res://icon.svg'
-var movements : int = 0
+var number_of_movements : int = 0
 var points : int = 0
 
 @export var piece_scene : PackedScene
 
 func _ready():
-	_generate_pieces()
 	_set_margins()
+	_generate_pieces()
 
-func _process(delta):
-	pass
-
-func _set_margins():
+func _generate_segments():
+	var segments = []
 	for i in range(4):
-		var area2d = Area2D.new()
 		var vector_b = Vector2.RIGHT
 		vector_b = vector_b.rotated(i*(PI/2))
 		vector_b = Utils.vector_product(vector_b, size)
@@ -26,12 +35,21 @@ func _set_margins():
 		if i > 1:
 			segment_shape2d.a += size
 			segment_shape2d.b += size
-		
+
+		segments.append(segment_shape2d)
+	return segments
+
+func _set_margins():
+	var segments = _generate_segments()
+	
+	for i in range(4):
+		var area2d = Area2D.new()
 		var collision_shape2d = CollisionShape2D.new()
-		collision_shape2d.shape = segment_shape2d
+		collision_shape2d.shape = segments[i]
 		area2d.monitoring = false
-		
+
 		area2d.add_child(collision_shape2d)
+		area2d.add_to_group('border')
 		add_child(area2d)
 
 func _generate_pieces() -> void:
@@ -43,17 +61,22 @@ func _generate_pieces() -> void:
 			if i == 0 and j == 0:
 				continue
 			var piece = _create_piece(piece_size, Vector2(i, j))
-			var random_position = Utils.random_vector2(pieces_range.x, pieces_range.y)
-			while random_position in occupied_position:
-				random_position = Utils.random_vector2(pieces_range.x, pieces_range.y)
-			occupied_position.append(random_position)
+			var random_position = _get_unique_vector(occupied_position)
 			piece.current_position = Vector2(random_position)
+			points += int(piece.is_in_correct())
 			piece.position = Utils.vector_product(random_position, piece_size) + offset_pivot
 
 			add_child(piece)
 
+func _get_unique_vector(array: Array):
+	var random_position = Utils.random_vector2(pieces_range.x, pieces_range.y)
+	while random_position in array:
+		random_position = Utils.random_vector2(pieces_range.x, pieces_range.y)
+	array.append(random_position)
+
+	return random_position
+
 func _create_piece(size, correct_position):
-	pass
 	var piece = piece_scene.instantiate()
 	piece.image_path = image_path
 	piece.size = size
@@ -65,10 +88,6 @@ func _create_piece(size, correct_position):
 func _mix_pieces():
 	pass
 
-func _on_piece_moved(current_correct, was_correct_position):
-	movements += 1
-	if current_correct:
-		points += 1
-	elif was_correct_position:
-		points -= 1
-	print(points)
+func _on_piece_moved(correct_moved):
+	number_of_movements += 1
+	points += correct_moved

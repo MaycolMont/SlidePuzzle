@@ -1,16 +1,17 @@
 extends Area2D
 
-signal moved(current_position, correct_position)
+signal moved(correct_moved)
 
 var size : Vector2
 var current_position : Vector2
 var correct_position : Vector2
 var image_path : String
-var in_correct_position : bool
+var raycast : RayCast2D
+var orientations : Array = 'Down,Left,Up,Right'.split(',')
 
 func _ready():
 	_set_dimensions()
-	_set_raycasts()
+	_add_raycast()
 
 func _process(delta):
 	pass
@@ -23,31 +24,46 @@ func _set_dimensions() -> void:
 	var region_position = Utils.vector_product(correct_position, size)
 	sprite.region_rect = Rect2(region_position, size)
 
-func _set_raycasts() -> void:
-	for i in range(4):
-		var raycast2d = RayCast2D.new()
-		raycast2d.collide_with_areas = true
-		raycast2d.target_position.y = (size.x / 2) + 10
-		raycast2d.target_position = raycast2d.target_position.rotated(i * (PI/2))
-		add_child(raycast2d)
+func _add_raycast() -> void:
+	var raycast2d = RayCast2D.new()
+	raycast2d.collide_with_areas = true
+	raycast2d.target_position.y = (size.x / 2) + 10
+	add_child(raycast2d)
+	raycast = raycast2d
 
-func _get_free_direction() -> Vector2:
-	var array_raycasts = []
-	for child in get_children():
-		if child is RayCast2D:
-			if not child.is_colliding():
-				return child.target_position.normalized()
+func _tour_values():
+	for orientation in orientations:
+		var raycast2d = get_node(orientation)
+		var collider = raycast2d.get_collider()
+		while not collider.is_in_group('border'):
+			pass
+
+func _get_free_direction():
+	var angle = PI/2
+	for i in range(4):
+		var new_direction = raycast.target_position.rotated(angle)
+		raycast.target_position = Vector2(int(new_direction.x), int(new_direction.y))
+		raycast.force_raycast_update()
+
+		if not raycast.is_colliding():
+			return raycast.target_position.normalized()
 
 	return Vector2.ZERO
 
 func _try_move() -> void:
 	var direction = _get_free_direction()
 	if direction:
-		var was_correct_position = correct_position == current_position
+		var correct_move = 0
+		if is_in_correct():
+			correct_move = -1
 		current_position += direction
-		var current_correct = correct_position == current_position
-		moved.emit(current_correct, was_correct_position)
+		if is_in_correct():
+			correct_move = 1
+		moved.emit(correct_move)
 		position += Utils.vector_product(direction, size)
+
+func is_in_correct():
+	return correct_position == current_position
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
