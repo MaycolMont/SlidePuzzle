@@ -16,7 +16,9 @@ var size : Vector2 = Vector2.ONE * 128
 var pieces_range : Vector2i = Vector2i.ONE * 3
 var image_path : String = 'res://icon.svg'
 var number_of_movements : int = 0
+var total_pieces : int
 var points : int = 0
+var free_position : Vector2
 
 @export var piece_scene : PackedScene
 
@@ -41,7 +43,7 @@ func _generate_segments():
 
 func _set_margins():
 	var segments = _generate_segments()
-	
+
 	for i in range(4):
 		var area2d = Area2D.new()
 		var collision_shape2d = CollisionShape2D.new()
@@ -65,6 +67,7 @@ func _generate_pieces() -> void:
 			piece.current_position = Vector2(random_position)
 			points += int(piece.is_in_correct())
 			piece.position = Utils.vector_product(random_position, piece_size) + offset_pivot
+			total_pieces += 1
 
 			add_child(piece)
 
@@ -82,12 +85,25 @@ func _create_piece(size, correct_position):
 	piece.size = size
 	piece.correct_position = correct_position
 	piece.moved.connect(_on_piece_moved)
+	piece.tried_move.connect(_on_piece_tried_move)
 
 	return piece
 
 func _mix_pieces():
 	pass
 
-func _on_piece_moved(correct_moved):
+func _on_piece_moved(correct_moved, preview_position):
 	number_of_movements += 1
 	points += correct_moved
+	free_position = preview_position
+	print(points)
+	if points == total_pieces:
+		solved.emit(number_of_movements)
+
+func _on_piece_tried_move(piece: Piece):
+	var piece_position = piece.current_position
+	var in_column = piece_position.x == free_position.x
+	var in_row = piece_position.y == free_position.y
+	if in_row or in_column:
+		var direction_move = (free_position - piece_position).normalized()
+		piece.push_to(direction_move)

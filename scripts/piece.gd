@@ -1,13 +1,14 @@
 extends Area2D
+class_name Piece
 
-signal moved(correct_moved)
+signal moved(correct_moved, free_position)
+signal tried_move(current_position)
 
 var size : Vector2
 var current_position : Vector2
 var correct_position : Vector2
 var image_path : String
 var raycast : RayCast2D
-var orientations : Array = 'Down,Left,Up,Right'.split(',')
 
 func _ready():
 	_set_dimensions()
@@ -31,13 +32,6 @@ func _add_raycast() -> void:
 	add_child(raycast2d)
 	raycast = raycast2d
 
-func _tour_values():
-	for orientation in orientations:
-		var raycast2d = get_node(orientation)
-		var collider = raycast2d.get_collider()
-		while not collider.is_in_group('border'):
-			pass
-
 func _get_free_direction():
 	var angle = PI/2
 	for i in range(4):
@@ -50,22 +44,35 @@ func _get_free_direction():
 
 	return Vector2.ZERO
 
-func _try_move() -> void:
-	var direction = _get_free_direction()
-	if direction:
-		var correct_move = 0
-		if is_in_correct():
-			correct_move = -1
-		current_position += direction
-		if is_in_correct():
-			correct_move = 1
-		moved.emit(correct_move)
-		position += Utils.vector_product(direction, size)
+func _move(direction) -> void:
+	var correct_move = 0
+	if is_in_correct():
+		correct_move = -1
+	current_position += direction
+	if is_in_correct():
+		correct_move = 1
+	moved.emit(correct_move, current_position - direction)
+	position += Utils.vector_product(direction, size)
 
 func is_in_correct():
 	return correct_position == current_position
 
+func push_to(direction: Vector2) -> void:
+	var raycast_lenght = raycast.target_position.length()
+	var new_target_position = direction * raycast_lenght
+	raycast.target_position = new_target_position
+	raycast.force_raycast_update()
+
+	if raycast.is_colliding():
+		var piece_neighbor = raycast.get_collider()
+		piece_neighbor.push_to(direction)
+	_move(direction)
+
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			_try_move()
+			var direction = _get_free_direction()
+			if direction:
+				_move(direction)
+			else:
+				tried_move.emit(self)
