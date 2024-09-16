@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw10of075sgo5"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_hqe0d"]
+[ext_resource type="PackedScene" uid="uid://0j4ckdircxvg" path="res://scenes/board.tscn" id="2_l131m"]
+[ext_resource type="Texture2D" uid="uid://cj4661154yppa" path="res://icon.svg" id="3_f707q"]
+
+[node name="Game" type="Control" node_paths=PackedStringArray("timer", "texture_preview")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hqe0d")
+timer = NodePath("VBoxContainer/HBoxContainer/TimeLabel/Timer")
+texture_preview = NodePath("VBoxContainer/HBoxContainer/Preview")
+board_scene = ExtResource("2_l131m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Preview" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_f707q")
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Tiempo: "
+
+[node name="Timer" type="Timer" parent="VBoxContainer/HBoxContainer/TimeLabel"]
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2

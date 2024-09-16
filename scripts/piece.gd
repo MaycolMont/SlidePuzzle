@@ -7,21 +7,17 @@ signal tried_move(current_position)
 var size : Vector2
 var current_position : Vector2
 var correct_position : Vector2
-var image_path : String
+var texture : Texture2D
 var raycast : RayCast2D
 
 func _ready():
 	_set_dimensions()
 	_add_raycast()
 
-func _process(delta):
-	pass
-
 func _set_dimensions() -> void:
 	$CollisionShape2D.shape.size = size
-	var texture_resource = load(image_path)
 	var sprite = $Sprite2D
-	sprite.texture = texture_resource
+	sprite.texture = texture
 	var region_position = Utils.vector_product(correct_position, size)
 	sprite.region_rect = Rect2(region_position, size)
 

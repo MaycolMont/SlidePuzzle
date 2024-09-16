@@ -1,11 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqv0xyaso7wtu"]
+[gd_scene load_steps=3 format=3 uid="uid://bqv0xyaso7wtu"]
 
-[ext_resource type="ButtonGroup" uid="uid://ctfh50wu35es2" path="res://UI/images_button_group.tres" id="1_osmws"]
 [ext_resource type="Script" path="res://scripts/select_menu.gd" id="1_w405w"]
-[ext_resource type="Texture2D" uid="uid://cj4661154yppa" path="res://icon.svg" id="2_03hjl"]
-[ext_resource type="ButtonGroup" uid="uid://j754w72ov5a2" path="res://UI/size_button_group.tres" id="3_fh65o"]
+[ext_resource type="ButtonGroup" uid="uid://j754w72ov5a2" path="res://UI/size_group.tres" id="3_fh65o"]
 
-[node name="Control" type="Control"]
+[node name="SelectMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,28 +24,13 @@ layout_mode = 2
 layout_mode = 2
 text = "Selecciona una imagen"
 
-[node name="ImagesSelector" type="GridContainer" parent="MainContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ImagesSelector" type="GridContainer" parent="MainContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 3
-
-[node name="Button" type="Button" parent="MainContainer/VBoxContainer/ImagesSelector"]
-layout_mode = 2
-toggle_mode = true
-button_pressed = true
-button_group = ExtResource("1_osmws")
-icon = ExtResource("2_03hjl")
-
-[node name="Button3" type="Button" parent="MainContainer/VBoxContainer/ImagesSelector"]
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("1_osmws")
-icon = ExtResource("2_03hjl")
-
-[node name="Button4" type="Button" parent="MainContainer/VBoxContainer/ImagesSelector"]
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("1_osmws")
-icon = ExtResource("2_03hjl")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MainContainer"]
 layout_mode = 2

@@ -1,4 +1,5 @@
 extends Node2D
+class_name Board
 
 """
 A piece
@@ -12,9 +13,9 @@ size
 
 signal solved(number_of_movements)
 
-var size : Vector2 = Vector2.ONE * 128
-var pieces_range : Vector2i = Vector2i.ONE * 3
-var image_path : String = 'res://icon.svg'
+var size : Vector2
+var pieces_range : Vector2i
+var texture : Texture2D
 var number_of_movements : int = 0
 var total_pieces : int
 var points : int = 0
@@ -81,7 +82,7 @@ func _get_unique_vector(array: Array):
 
 func _create_piece(size, correct_position):
 	var piece = piece_scene.instantiate()
-	piece.image_path = image_path
+	piece.texture = texture
 	piece.size = size
 	piece.correct_position = correct_position
 	piece.moved.connect(_on_piece_moved)
