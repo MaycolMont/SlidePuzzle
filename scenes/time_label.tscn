@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx78gd70gbhiu"]
+
+[ext_resource type="Script" path="res://scripts/time_label.gd" id="1_5s187"]
+
+[node name="TimeLabel" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Time 00:00"
+script = ExtResource("1_5s187")
+label_text = "Hola"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

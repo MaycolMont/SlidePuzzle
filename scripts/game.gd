@@ -1,13 +1,13 @@
 extends Control
 
-@export var timer : Timer
 @export var texture_preview : TextureRect
 @export var board_scene : PackedScene
+@export var timer_label : Label
 
 func _ready():
 	_set_board()
 	_set_image_preview()
-	timer.start()
+	timer_label.start()
 
 func _set_image_preview():
 	texture_preview.texture = Global.texture_resource
@@ -21,4 +21,4 @@ func _set_board():
 	$VBoxContainer/PanelContainer.add_child(board)
 
 func _on_board_solved(number_of_movements):
-	timer.stop()
+	print($VBoxContainer/HBoxContainer/TimeLabel.time_text)

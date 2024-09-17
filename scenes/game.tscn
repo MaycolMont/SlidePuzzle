@@ -1,20 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw10of075sgo5"]
+[gd_scene load_steps=5 format=3 uid="uid://cw10of075sgo5"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_hqe0d"]
 [ext_resource type="PackedScene" uid="uid://0j4ckdircxvg" path="res://scenes/board.tscn" id="2_l131m"]
 [ext_resource type="Texture2D" uid="uid://cj4661154yppa" path="res://icon.svg" id="3_f707q"]
+[ext_resource type="PackedScene" uid="uid://bx78gd70gbhiu" path="res://scenes/time_label.tscn" id="4_ox6at"]
 
-[node name="Game" type="Control" node_paths=PackedStringArray("timer", "texture_preview")]
+[node name="Game" type="Control" node_paths=PackedStringArray("texture_preview", "timer_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_hqe0d")
-timer = NodePath("VBoxContainer/HBoxContainer/TimeLabel/Timer")
 texture_preview = NodePath("VBoxContainer/HBoxContainer/Preview")
 board_scene = ExtResource("2_l131m")
+timer_label = NodePath("VBoxContainer/HBoxContainer/TimeLabel")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -28,11 +30,9 @@ layout_mode = 2
 layout_mode = 2
 texture = ExtResource("3_f707q")
 
-[node name="TimeLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="TimeLabel" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_ox6at")]
 layout_mode = 2
-text = "Tiempo: "
-
-[node name="Timer" type="Timer" parent="VBoxContainer/HBoxContainer/TimeLabel"]
+label_text = "Time"
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
