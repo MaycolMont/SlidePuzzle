@@ -8,7 +8,6 @@ Parameter
 ---------
 size
 	size of the board
-
 """
 
 signal solved(number_of_movements)
@@ -97,9 +96,9 @@ func _on_piece_moved(correct_moved, preview_position):
 	number_of_movements += 1
 	points += correct_moved
 	free_position = preview_position
-	print(points)
 	if points == total_pieces:
 		solved.emit(number_of_movements)
+		print_debug('board solved')
 
 func _on_piece_tried_move(piece: Piece):
 	var piece_position = piece.current_position
