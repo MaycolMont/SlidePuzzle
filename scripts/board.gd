@@ -55,13 +55,17 @@ func _set_margins() -> void:
 
 func _generate_pieces() -> void:
 	var occupied_position = []
-	var piece_size = size/pieces_range
+	var piece_size = size / pieces_range
 	var offset_pivot = Vector2.ONE * (piece_size/2)
+	var texture_size = texture.get_size() / pieces_range
+	var texture_scale = size / texture.get_size().x
+	print(texture_scale)
 	for j in range(pieces_range):
 		for i in range(pieces_range):
 			if i == 0 and j == 0:
 				continue
-			var piece = _create_piece(size, piece_size, Vector2(i, j))
+			var piece = _create_piece(piece_size, Vector2(i, j))
+			piece.set_texture(texture, pieces_range, texture_scale)
 			var random_position = _get_unique_vector(occupied_position)
 			piece.current_position = random_position
 			points += int(piece.is_in_correct())
@@ -77,12 +81,9 @@ func _get_unique_vector(array: Array) -> Vector2:
 
 	return random_position
 
-func _create_piece(board_size, size, correct_position) -> Piece:
+func _create_piece(piece_size, correct_position) -> Piece:
 	var piece = piece_scene.instantiate()
-	piece.texture_size = texture.get_size().x / pieces_range
-	piece.factor_scale = board_size/texture.get_size().x
-	piece.texture = texture
-	piece.size = size
+	piece.size = piece_size
 	piece.correct_position = correct_position
 	piece.moved.connect(_on_piece_moved)
 	piece.tried_move.connect(_on_piece_tried_move)

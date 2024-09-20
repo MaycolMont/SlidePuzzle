@@ -28,4 +28,4 @@ func _verify_data():
 
 func _on_board_solved(number_of_movements):
 	time_label.stop()
-	print_debug($VBoxContainer/HBoxContainer/TimeLabel.time_text)
+	print_debug(time_label.time_text)

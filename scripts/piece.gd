@@ -5,11 +5,8 @@ signal moved(correct_moved, free_position)
 signal tried_move(current_position)
 
 var size : float
-var factor_scale : float
-var texture_size : float
 var current_position : Vector2
 var correct_position : Vector2
-var texture : Texture2D
 var raycast : RayCast2D
 
 func _ready():
@@ -19,10 +16,14 @@ func _ready():
 func _set_dimensions() -> void:
 	var vector_size = Vector2.ONE * size
 	$CollisionShape2D.shape.size = vector_size
+
+func set_texture(texture, grid_size, factor_scale):
 	var sprite = $Sprite2D
 	sprite.texture = texture
-	sprite.region_rect = Rect2(texture_size * correct_position, texture_size * Vector2.ONE)
-	sprite.scale *= factor_scale
+	sprite.hframes = grid_size
+	sprite.vframes = grid_size
+	sprite.frame_coords = correct_position
+	sprite.scale = Vector2.ONE * factor_scale
 
 func _add_raycast() -> void:
 	var raycast2d = RayCast2D.new()
