@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cj4661154yppa" path="res://icon.svg" id="3_f707q"]
 [ext_resource type="PackedScene" uid="uid://bx78gd70gbhiu" path="res://scenes/time_label.tscn" id="4_ox6at"]
 
-[node name="Game" type="Control" node_paths=PackedStringArray("texture_preview", "time_label")]
+[node name="Game" type="Control" node_paths=PackedStringArray("texture_preview", "time_label", "board_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,24 +14,32 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_hqe0d")
-texture_preview = NodePath("VBoxContainer/HBoxContainer/Preview")
+texture_preview = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Preview")
 board_scene = ExtResource("2_l131m")
-time_label = NodePath("VBoxContainer/HBoxContainer/TimeLabel")
+time_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/TimeLabel")
+board_container = NodePath("MarginContainer/VBoxContainer/BoardPanelContainer")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Preview" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+[node name="Preview" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -39,13 +47,12 @@ texture = ExtResource("3_f707q")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="TimeLabel" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_ox6at")]
+[node name="TimeLabel" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_ox6at")]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 10
 horizontal_alignment = 2
 label_text = "Time"
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+[node name="BoardPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 3

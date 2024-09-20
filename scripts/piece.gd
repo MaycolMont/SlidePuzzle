@@ -4,7 +4,9 @@ class_name Piece
 signal moved(correct_moved, free_position)
 signal tried_move(current_position)
 
-var size : Vector2
+var size : float
+var factor_scale : float
+var texture_size : float
 var current_position : Vector2
 var correct_position : Vector2
 var texture : Texture2D
@@ -15,16 +17,17 @@ func _ready():
 	_add_raycast()
 
 func _set_dimensions() -> void:
-	$CollisionShape2D.shape.size = size
+	var vector_size = Vector2.ONE * size
+	$CollisionShape2D.shape.size = vector_size
 	var sprite = $Sprite2D
 	sprite.texture = texture
-	var region_position = Utils.vector_product(correct_position, size)
-	sprite.region_rect = Rect2(region_position, size)
+	sprite.region_rect = Rect2(texture_size * correct_position, texture_size * Vector2.ONE)
+	sprite.scale *= factor_scale
 
 func _add_raycast() -> void:
 	var raycast2d = RayCast2D.new()
 	raycast2d.collide_with_areas = true
-	raycast2d.target_position.y = (size.x / 2) + 10
+	raycast2d.target_position.y = (size / 2) + 10
 	add_child(raycast2d)
 	raycast = raycast2d
 
@@ -48,7 +51,7 @@ func _move(direction) -> void:
 	if is_in_correct():
 		correct_move = 1
 	moved.emit(correct_move, current_position - direction)
-	position += Utils.vector_product(direction, size)
+	position += direction * size
 
 func is_in_correct():
 	return correct_position == current_position

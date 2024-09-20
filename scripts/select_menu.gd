@@ -12,7 +12,7 @@ func _ready():
 func _set_options(options_container, path, button_group):
 	var file_names = DirAccess.get_files_at(path)
 	file_names = _filter_files(file_names)
-	var textures_resources = _get_texture_resources(file_names)
+	var textures_resources = _generate_texture_resources(file_names)
 	_generate_buttons(options_container, textures_resources)
 
 func _generate_buttons(buttons_container, texture_resources : Array):
@@ -31,7 +31,7 @@ func _create_button(button_group, texture_resource):
 	button.expand_icon
 	return button
 
-func _get_texture_resources(list_file_name: Array):
+func _generate_texture_resources(list_file_name: Array):
 	var texture_resources = []
 	for file_name in list_file_name:
 		var file_path = images_path + file_name
