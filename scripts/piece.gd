@@ -17,7 +17,7 @@ func _set_dimensions() -> void:
 	var vector_size = Vector2.ONE * size
 	$CollisionShape2D.shape.size = vector_size
 
-func set_texture(texture, grid_size, factor_scale):
+func set_texture(texture, grid_size, factor_scale) -> void:
 	var sprite = $Sprite2D
 	sprite.texture = texture
 	sprite.hframes = grid_size
@@ -32,7 +32,7 @@ func _add_raycast() -> void:
 	add_child(raycast2d)
 	raycast = raycast2d
 
-func _get_free_direction():
+func _get_free_direction() -> Vector2:
 	var angle = PI/2
 	for i in range(4):
 		var new_direction = raycast.target_position.rotated(angle)
@@ -54,7 +54,7 @@ func _move(direction) -> void:
 	moved.emit(correct_move, current_position - direction)
 	position += direction * size
 
-func is_in_correct():
+func is_in_correct() -> bool:
 	return correct_position == current_position
 
 func push_to(direction: Vector2) -> void:

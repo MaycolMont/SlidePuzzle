@@ -16,7 +16,7 @@ signal solved(number_of_movements)
 @export var pieces_range : int
 @export var texture : Texture2D
 var number_of_movements : int = 0
-var total_pieces : int = (pieces_range ** 2) -1
+var total_pieces : int
 var points : int = 0
 var free_position : Vector2
 
@@ -54,12 +54,11 @@ func _set_margins() -> void:
 		add_child(area2d)
 
 func _generate_pieces() -> void:
+	total_pieces = (pieces_range**2)-1
 	var occupied_position = []
 	var piece_size = size / pieces_range
 	var offset_pivot = Vector2.ONE * (piece_size/2)
-	var texture_size = texture.get_size() / pieces_range
 	var texture_scale = size / texture.get_size().x
-	print(texture_scale)
 	for j in range(pieces_range):
 		for i in range(pieces_range):
 			if i == 0 and j == 0:
@@ -90,16 +89,12 @@ func _create_piece(piece_size, correct_position) -> Piece:
 
 	return piece
 
-func _test_board():
-	pass
-
 func _on_piece_moved(correct_moved, preview_position) -> void:
 	number_of_movements += 1
 	points += correct_moved
 	free_position = preview_position
 	if points == total_pieces:
 		solved.emit(number_of_movements)
-		print_debug('board solved')
 
 func _on_piece_tried_move(piece: Piece) -> void:
 	var piece_position = piece.current_position

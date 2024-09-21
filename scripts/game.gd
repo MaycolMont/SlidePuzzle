@@ -11,6 +11,11 @@ func _ready():
 	_set_image_preview()
 	time_label.start()
 
+func _verify_new_game():
+	if Global.new_game:
+		Global.load_data()
+		Global.new_game = false
+
 func _set_image_preview():
 	texture_preview.texture = Global.texture_resource
 
@@ -27,5 +32,4 @@ func _verify_data():
 		Global._simulate_test_data()
 
 func _on_board_solved(number_of_movements):
-	time_label.stop()
-	print_debug(time_label.time_text)
+	Global.save_time(time_label.get_time())
