@@ -8,3 +8,8 @@ static func random_vector2(max_x: int, max_y: int) -> Vector2:
 	var x = randi_range(0, max_x - 1)
 	var y = randi_range(0, max_y - 1)
 	return Vector2(x, y)
+
+static func get_format_time(time: float):
+	var minutes = int(time) / 60
+	var seconds = int(time) % 60
+	return '%02d:%02d' % [minutes, seconds]

@@ -26,6 +26,7 @@ func save_data():
 	var save_file = FileAccess.open(save_path, FileAccess.WRITE)
 	save_file.store_var(game_data)
 	save_file.close()
+	print_debug('Time saved: ', game_data)
 
 func load_data():
 	if FileAccess.file_exists(save_path):
@@ -33,3 +34,4 @@ func load_data():
 
 		game_data = save_file.get_var()
 		save_file.close()
+		print_debug('Data loaded: ', game_data)

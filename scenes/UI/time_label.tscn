@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bx78gd70gbhiu"]
 
-[ext_resource type="Script" path="res://scripts/time_label.gd" id="1_5s187"]
+[ext_resource type="Script" path="res://scripts/ui/time_label.gd" id="1_5s187"]
 
 [node name="TimeLabel" type="Label"]
 offset_right = 40.0

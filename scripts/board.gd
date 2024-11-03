@@ -93,7 +93,7 @@ func _on_piece_moved(correct_moved, preview_position) -> void:
 	number_of_movements += 1
 	points += correct_moved
 	free_position = preview_position
-	if points == total_pieces:
+	if points == total_pieces-5:
 		solved.emit(number_of_movements)
 
 func _on_piece_tried_move(piece: Piece) -> void:

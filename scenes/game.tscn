@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_hqe0d"]
 [ext_resource type="PackedScene" uid="uid://0j4ckdircxvg" path="res://scenes/board.tscn" id="2_l131m"]
 [ext_resource type="Texture2D" uid="uid://cj4661154yppa" path="res://icon.svg" id="3_f707q"]
-[ext_resource type="PackedScene" uid="uid://bx78gd70gbhiu" path="res://scenes/time_label.tscn" id="4_ox6at"]
+[ext_resource type="PackedScene" uid="uid://bx78gd70gbhiu" path="res://scenes/UI/time_label.tscn" id="4_ox6at"]
 
 [node name="Game" type="Control" node_paths=PackedStringArray("texture_preview", "time_label", "board_container")]
 layout_mode = 3
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 script = ExtResource("1_hqe0d")
 texture_preview = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Preview")
 board_scene = ExtResource("2_l131m")
@@ -56,3 +56,4 @@ label_text = "Time"
 [node name="BoardPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
