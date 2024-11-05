@@ -10,17 +10,18 @@ size
 	size of the board
 """
 
-signal solved(number_of_movements)
+signal solved(number_of_movements) # emit when the puzzle has been solved
 
 @export var size : int
 @export var pieces_range : int
 @export var texture : Texture2D
+@export var piece_scene : PackedScene
+
 var number_of_movements : int = 0
 var total_pieces : int
 var points : int = 0
 var free_position : Vector2
 
-@export var piece_scene : PackedScene
 
 func _ready():
 	_set_margins()
@@ -56,7 +57,9 @@ func _set_margins() -> void:
 func _generate_pieces() -> void:
 	total_pieces = (pieces_range**2)-1
 	var occupied_position = []
+	@warning_ignore("integer_division")
 	var piece_size = size / pieces_range
+	@warning_ignore("integer_division")
 	var offset_pivot = Vector2.ONE * (piece_size/2)
 	var texture_scale = size / texture.get_size().x
 	for j in range(pieces_range):
@@ -71,6 +74,11 @@ func _generate_pieces() -> void:
 			piece.position = piece_size * random_position + offset_pivot
 
 			add_child(piece)
+
+	free_position = _get_unique_vector(occupied_position) # establece la última posición dentro del rango como libre
+	
+func _place_pieces():
+	pass
 
 func _get_unique_vector(array: Array) -> Vector2:
 	var random_position = Utils.random_vector2(pieces_range, pieces_range)
@@ -97,6 +105,19 @@ func _on_piece_moved(correct_moved, preview_position) -> void:
 		solved.emit(number_of_movements)
 
 func _on_piece_tried_move(piece: Piece) -> void:
+	"""
+	Handles the event when a piece attempts to move.
+
+	This function checks if the piece that tried to move is in the same
+	row or column as the free position on the board. If so, it calculates
+	the direction of movement and pushes the piece in that direction.
+
+	Parameters
+	----------
+	piece : Piece
+		The piece that attempted to move.
+	"""
+	
 	var piece_position = piece.current_position
 	var in_column = piece_position.x == free_position.x
 	var in_row = piece_position.y == free_position.y

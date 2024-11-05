@@ -1,0 +1,1 @@
+- fix bug error at select_menu - don't get texture normal - line 58

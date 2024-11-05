@@ -63,12 +63,12 @@ func push_to(direction: Vector2) -> void:
 	raycast.target_position = new_target_position
 	raycast.force_raycast_update()
 
-	if raycast.is_colliding():
+	if raycast.get_collider() is Piece:
 		var piece_neighbor = raycast.get_collider()
 		piece_neighbor.push_to(direction)
 	_move(direction)
 
-func _on_input_event(viewport, event, shape_idx):
+func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			var direction = _get_free_direction()

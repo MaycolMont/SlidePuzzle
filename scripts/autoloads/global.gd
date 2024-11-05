@@ -3,12 +3,12 @@ extends Node
 var new_game = true
 var texture_resource : Texture2D
 var grid_size : int
-var save_path : String = 'user://save_game.dat'
+var save_path : String = Config.SAVE_FILE_PATH
 var game_data : Dictionary = {}
 
 func _simulate_test_data():
-	texture_resource = load("res://assets/sprites/images/snowman.png")
-	grid_size = 3
+	texture_resource = load(Config.DebugConfig.IMAGE_PATH_DEFAULT)
+	grid_size = Config.DebugConfig.GRID_SIZE_DEFAULT
 
 func save_time(time: float):
 	if game_data.has(grid_size):
