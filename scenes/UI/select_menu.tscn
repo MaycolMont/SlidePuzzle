@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqv0xyaso7wtu"]
+[gd_scene load_steps=19 format=3 uid="uid://bqv0xyaso7wtu"]
 
 [ext_resource type="Script" path="res://scripts/ui/select_menu.gd" id="1_w405w"]
 [ext_resource type="ButtonGroup" uid="uid://ctfh50wu35es2" path="res://UI/images_group.tres" id="2_nklkf"]
@@ -6,9 +6,31 @@
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f1koh"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_o1maf"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6f5qr"]
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qeqst"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ttodx"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wox1j"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_w2r6x"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_iehmh"]
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_n3u8k"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_axx3l"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8oe2h"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rxa03"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0liax"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eqpny"]
 
 [sub_resource type="Theme" id="Theme_4qqln"]
 
@@ -20,7 +42,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="." node_paths=PackedStringArray("button_size")]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 clip_contents = true
 layout_mode = 1
 offset_right = 250.0
@@ -31,7 +53,8 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 script = ExtResource("1_w405w")
-button_size = NodePath("MainContainer/VBoxContainer2/SizeSelector/Button")
+button_size = ExtResource("3_fh65o")
+image_group = ExtResource("2_nklkf")
 
 [node name="MainContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -60,6 +83,8 @@ toggle_mode = true
 button_pressed = true
 button_group = ExtResource("2_nklkf")
 texture_normal = SubResource("PlaceholderTexture2D_f1koh")
+texture_pressed = SubResource("PlaceholderTexture2D_o1maf")
+texture_hover = SubResource("PlaceholderTexture2D_6f5qr")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -70,6 +95,8 @@ size_flags_horizontal = 6
 toggle_mode = true
 button_group = ExtResource("2_nklkf")
 texture_normal = SubResource("PlaceholderTexture2D_qeqst")
+texture_pressed = SubResource("PlaceholderTexture2D_ttodx")
+texture_hover = SubResource("PlaceholderTexture2D_wox1j")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -80,6 +107,8 @@ size_flags_horizontal = 6
 toggle_mode = true
 button_group = ExtResource("2_nklkf")
 texture_normal = SubResource("PlaceholderTexture2D_qeqst")
+texture_pressed = SubResource("PlaceholderTexture2D_w2r6x")
+texture_hover = SubResource("PlaceholderTexture2D_iehmh")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -91,6 +120,7 @@ toggle_mode = true
 button_group = ExtResource("2_nklkf")
 texture_normal = SubResource("PlaceholderTexture2D_qeqst")
 texture_pressed = SubResource("PlaceholderTexture2D_n3u8k")
+texture_hover = SubResource("PlaceholderTexture2D_axx3l")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -101,6 +131,8 @@ size_flags_horizontal = 6
 toggle_mode = true
 button_group = ExtResource("2_nklkf")
 texture_normal = SubResource("PlaceholderTexture2D_qeqst")
+texture_pressed = SubResource("PlaceholderTexture2D_8oe2h")
+texture_hover = SubResource("PlaceholderTexture2D_rxa03")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -111,6 +143,8 @@ size_flags_horizontal = 6
 toggle_mode = true
 button_group = ExtResource("2_nklkf")
 texture_normal = SubResource("PlaceholderTexture2D_qeqst")
+texture_pressed = SubResource("PlaceholderTexture2D_0liax")
+texture_hover = SubResource("PlaceholderTexture2D_eqpny")
 ignore_texture_size = true
 stretch_mode = 4
 

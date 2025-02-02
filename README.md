@@ -23,3 +23,35 @@ Declaration Order
 6. internal functions
 7. private functions
 8. public functions
+
+
+SYSTEMS
+- FUNCIONES
+	- guardado de tiempos por dificultad
+
+- PANTALLA DE INICIO
+	- empezar juego
+	- ver mejores tiempos
+	- configuración
+	- salir de juego
+	
+- MENÚ DE SELECCIÓN JUEGO
+	- selección de imagen
+	- selección de dificultad
+	- empezar juego
+	- regresar a menú
+
+- GANASTE(POP-UP)
+	- mensaje superado nuevo record(condicional)
+	- nuevo juego
+	- salir de juego
+
+- IN-GAME
+	- reiniciar
+	- salir
+	- mostrar solución
+	- retroceder jugadas
+	
+- CONFIGURACIÓN
+	- modular volumen de música
+	- modular volumen de efectos
