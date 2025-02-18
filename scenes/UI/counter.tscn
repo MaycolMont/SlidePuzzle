@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnhuyk15j5n6w"]
+
+[ext_resource type="Script" path="res://scripts/ui/counter.gd" id="1_0g1ps"]
+
+[node name="Counter" type="Label" node_paths=PackedStringArray("value_label", "text_label")]
+script = ExtResource("1_0g1ps")
+string_text_label = "Movements"
+value_label = NodePath("ValueLabel")
+text_label = NodePath("TextLabel")
+
+[node name="TextLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ValueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

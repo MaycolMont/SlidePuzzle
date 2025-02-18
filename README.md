@@ -20,9 +20,10 @@ Declaration Order
 3. export variables
 4. constants
 5. private and public variables
-6. internal functions
+6. override functions
 7. private functions
 8. public functions
+9. signal handlers
 
 
 SYSTEMS

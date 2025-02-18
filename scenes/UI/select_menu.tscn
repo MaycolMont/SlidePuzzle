@@ -53,7 +53,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 script = ExtResource("1_w405w")
-button_size = ExtResource("3_fh65o")
+size_group = ExtResource("3_fh65o")
 image_group = ExtResource("2_nklkf")
 
 [node name="MainContainer" type="VBoxContainer" parent="MarginContainer"]

@@ -24,6 +24,11 @@ Config="*res://config/Config.gd"
 window/size/viewport_width=250
 window/size/viewport_height=400
 
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
