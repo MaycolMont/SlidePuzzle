@@ -22,7 +22,7 @@ func _set_image_preview():
 
 func _set_board():
 	var board: Board = board_scene.instantiate()
-	board.size = 220
+	board.size = 190 # modificar para adaptar a tamaño
 	board.texture = Global.texture_resource
 	board.pieces_range = Global.grid_size
 	board.solved.connect(_on_board_solved)

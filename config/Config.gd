@@ -4,7 +4,8 @@ extends Node
 
 const IMAGES_PATH : String = "res://assets/sprites/images/"
 const IMAGE_GROUP_PATH : String = "res://UI/images_group.tres"
-const GAME_SCENE_PATH : String = "res://scenes/game.tscn"
+const GAME_SCENE_PATH : String = "res://scenes/game_manager.tscn"
+const MENU_SCENE_PATH : String = "res://scenes/main.tscn"
 const DEBUG_FILE_PATH : String = "res://config/DebugConfig.gd"
 
 #endregion

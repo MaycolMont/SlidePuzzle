@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://devw6d2pgn2un"]
+
+[ext_resource type="PackedScene" uid="uid://cw10of075sgo5" path="res://scenes/game.tscn" id="1_glms7"]
+[ext_resource type="Script" uid="uid://qq72a6lermiv" path="res://scripts/game_manager.gd" id="1_udu3i"]
+[ext_resource type="Script" uid="uid://d7aaae70bin8" path="res://scripts/ui/confirm_popup.gd" id="2_udu3i"]
+
+[node name="Node2D" type="CanvasLayer" unique_id=1687802638]
+script = ExtResource("1_udu3i")
+
+[node name="Game" parent="." unique_id=1131105887 instance=ExtResource("1_glms7")]
+
+[node name="ConfirmPopup" type="CenterContainer" parent="." unique_id=1858930095 groups=["popup"]]
+process_mode = 2
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_udu3i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConfirmPopup" unique_id=424762322]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="ConfirmPopup/VBoxContainer" unique_id=1317221748]
+layout_mode = 2
+text = "Seguro quieres salir?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConfirmPopup/VBoxContainer" unique_id=98739833]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Confirm" type="Button" parent="ConfirmPopup/VBoxContainer/HBoxContainer" unique_id=1151800609]
+layout_mode = 2
+text = "Aceptar"
+
+[node name="Cancel" type="Button" parent="ConfirmPopup/VBoxContainer/HBoxContainer" unique_id=59031174]
+layout_mode = 2
+text = "Salir"
+
+[node name="WinPopup" type="CenterContainer" parent="." unique_id=402797517 groups=["popup"]]
+process_mode = 2
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinPopup" unique_id=421690780]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="WinPopup/VBoxContainer" unique_id=1793837720]
+layout_mode = 2
+text = "Puzzle completado"
+
+[node name="Stats" type="Label" parent="WinPopup/VBoxContainer" unique_id=78163452]
+layout_mode = 2
+text = "Tiempo:
+Movimientos:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WinPopup/VBoxContainer" unique_id=1745636484]
+layout_mode = 2
+
+[node name="MenuButton" type="Button" parent="WinPopup/VBoxContainer/HBoxContainer" unique_id=1198737748]
+layout_mode = 2
+text = "Ir a menu"
+
+[node name="RepeatButton" type="Button" parent="WinPopup/VBoxContainer/HBoxContainer" unique_id=1969400347]
+layout_mode = 2
+text = "Repetir"
+
+[connection signal="pressed" from="ConfirmPopup/VBoxContainer/HBoxContainer/Confirm" to="." method="_go_to_menu"]
+[connection signal="pressed" from="ConfirmPopup/VBoxContainer/HBoxContainer/Cancel" to="ConfirmPopup" method="_on_cancel_pressed"]
+[connection signal="pressed" from="WinPopup/VBoxContainer/HBoxContainer/MenuButton" to="." method="_go_to_menu"]
