@@ -1,11 +1,9 @@
 extends Node2D
+## Stub test file. No test framework configured.
+## Verify manually by running the project in the Godot editor.
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	print(get_node("Hola"))
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta: float) -> void:
 	pass

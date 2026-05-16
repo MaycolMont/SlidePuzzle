@@ -1,24 +1,34 @@
 extends Label
 class_name TimeLabel
+## Displays elapsed time since [method start] was called. Uses an internal
+## [Timer] node for counting seconds.
 
-@export var label_text : String = 'Time'
-var time_text : String = '00:00'
+## Prefix text shown before the time (e.g. "Time").
+@export var label_text: String = 'Time'
+## The current time string (MM:SS).
+var time_text: String = '00:00'
 
-var hour : int = 0
-var minute : int = 0
-var second : int = 0
+## Elapsed hours (unused).
+var hour: int = 0
+## Elapsed minutes.
+var minute: int = 0
+## Elapsed seconds.
+var second: int = 0
 
-func _ready():
+func _ready() -> void:
 	text = '%s %s' % [label_text, time_text]
 
-func start():
+## Starts the internal timer.
+func start() -> void:
 	$Timer.start()
 
-func get_time():
+## Stops the timer and returns total elapsed seconds.
+func get_time() -> int:
 	$Timer.stop()
 	return second + minute * 60
 
-func _on_timer_timeout():
+## Advances the time by one second and updates the display.
+func _on_timer_timeout() -> void:
 	second += 1
 	if second == 60:
 		minute += 1

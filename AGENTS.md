@@ -1,28 +1,30 @@
 # Godot SlidePuzzle Project
 
 ## Project Type
-Godot 4.6 project using GL Compatibility renderer. Not a web/JS project - runs in Godot Editor.
+Godot 4.6, GL Compatibility renderer. Viewport 250x400 (portrait). Opens in Godot Editor, not a web project.
 
-## Running the Game
-Open `project.godot` in Godot Editor and press F5 (or click Play button).
+## Running
+Open `project.godot` in Godot Editor → F5. Entry scene is `scenes/main.tscn` (menu), **not** `game.tscn`.
 
-## Key Files
-- `project.godot` - Engine config
-- `scenes/game.tscn` - Main game scene
-- `scripts/game.gd` - Game controller
-- `scripts/board.gd` - Board logic
-- `scripts/piece.gd` - Puzzle piece
+## Scene Flow
+`main.tscn` → `select_menu.tscn` (pick image + grid size) → `game.tscn` → dynamically instantiates `board.tscn` → spawns `piece.tscn` children.
 
-## Autoloads (Global Singletons)
-- `Global` - `scripts/autoloads/global.gd` - Game state, texture, save/load
-- `Config` - `config/Config.gd` - Settings (DEBUG_MODE=true by default)
+## Autoloads (Singletons)
+- `Global` (`scripts/autoloads/global.gd`) — game state, texture/grid selection, save/load top 5 times per grid size
+- `Config` (`config/Config.gd`) — constants, DEBUG_MODE toggle
 
-## Code Quirks
-- `Config.gd:25` - DEBUG_MODE is `true`; loads DebugConfig.gd at runtime
-- `Config.gd:28` - DebugConfig is a preload, not a runtime load
-- Images loaded from `res://assets/sprites/images/`
-- Save file at `user://save_game.dat`
+## Key Scripts
+- `scripts/game.gd` — game controller, handles win popup, escape→pause menu
+- `scripts/board.gd` — Board class_name, generates pieces, tracks free slot, detects solved state
+- `scripts/piece.gd` — Piece class_name (extends Area2D), click-to-move via RayCast2D, multi-push support
+- `scripts/utils/utils.gd` — Utils class_name (NOT an autoload), static helpers for time formatting and random vectors
+- `config/Config.gd:26` — `DEBUG_MODE = true`; preloads `DebugConfig.gd` at startup
+- `config/DebugConfig.gd` — when DEBUG_MODE, skips menu: loads `snowman.png` with 3x3 grid
+
+## Paths
+- Images: `res://assets/sprites/images/` (png/jpg/svg supported)
+- Save: `user://save_game.dat` (Dictionary of grid_size → [top 5 times])
+- Scenes: `scenes/main.tscn` (menu), `scenes/game.tscn` (gameplay), `scenes/board.tscn`, `scenes/piece.tscn`
 
 ## Testing
-- `tests/test.gd` - Unit tests via Godot test framework
-- Run via Editor: Debug > Run Tests
+`tests/test.gd` is a stub (prints a node, does nothing). No test framework configured. Verify by running in editor.
