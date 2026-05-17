@@ -8,7 +8,9 @@ class_name Piece
 ## [param free_position] is the grid position vacated by this move.
 signal moved(correct_moved: int, free_position: Vector2)
 ## Emitted when the piece is clicked but has no adjacent free slot.
-signal tried_move(current_position: Vector2)
+## [param piece] is the piece that tried to move; the board checks alignment
+## with the free slot and triggers a multi-push if applicable.
+signal tried_move(piece: Piece)
 
 ## Visual/logical size of the piece in pixels.
 var size: float
@@ -100,5 +102,5 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			if direction:
 				_move(direction)
 			else:
-				tried_move.emit(current_position)
+				tried_move.emit(self)
 #endregion
