@@ -58,4 +58,6 @@ func _go_to_menu() -> void:
 func _on_board_solved(number_of_movements: int) -> void:
 	Global.save_time(time_label.get_time())
 	get_tree().paused = true
+	%TimeLabel.text += time_label.time_text
+	%MovementsLabel.text += str(number_of_movements)
 	$WinPopup.show()

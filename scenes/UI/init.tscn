@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://dyx34kk7wqcwk"]
+
+[ext_resource type="Script" uid="uid://dsn0tlg2ot42d" path="res://scripts/ui/init_manager.gd" id="1_jbbqw"]
+[ext_resource type="PackedScene" uid="uid://cknilos0lcemr" path="res://scenes/UI/ranking.tscn" id="2_2o2qr"]
+[ext_resource type="PackedScene" uid="uid://bakppda8lgrfd" path="res://scenes/UI/PopUp.tscn" id="2_44o3x"]
+[ext_resource type="PackedScene" uid="uid://ctc85li0ygvuf" path="res://UI/slider_item.tscn" id="3_y7v68"]
+
+[node name="Init" type="Control" unique_id=148553526]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jbbqw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=920703786]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -20.0
+offset_right = 89.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="HBoxContainer" unique_id=1463273706]
+layout_mode = 2
+text = "Play"
+
+[node name="ConfigButton" type="Button" parent="HBoxContainer" unique_id=2005508221]
+layout_mode = 2
+text = "Config"
+
+[node name="RankingButton" type="Button" parent="HBoxContainer" unique_id=944372242]
+layout_mode = 2
+text = "Ranking"
+
+[node name="ConfigurePopup" parent="." unique_id=1546385183 instance=ExtResource("2_44o3x")]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -88.0
+offset_bottom = 94.0
+
+[node name="VBoxContainer" parent="ConfigurePopup" index="0" unique_id=227837818]
+anchors_preset = 15
+anchor_top = 0.0
+anchor_bottom = 1.0
+offset_top = 0.0
+offset_bottom = 0.0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="ConfigurePopup/VBoxContainer" index="1" unique_id=1751460818]
+process_mode = 2
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MusicSlider" parent="ConfigurePopup/VBoxContainer/HBoxContainer" unique_id=1528488934 instance=ExtResource("3_y7v68")]
+layout_mode = 2
+
+[node name="VolumeSlider" parent="ConfigurePopup/VBoxContainer/HBoxContainer" unique_id=1057708370 instance=ExtResource("3_y7v68")]
+layout_mode = 2
+
+[node name="TitleLabel" parent="ConfigurePopup/VBoxContainer/HBoxContainer/VolumeSlider" index="0" unique_id=567320421]
+text = "Volumen:"
+
+[node name="HSlider" parent="ConfigurePopup/VBoxContainer/HBoxContainer/VolumeSlider/HBoxContainer" parent_id_path=PackedInt32Array(1057708370, 1484825346) index="0" unique_id=1325764495]
+ticks_position = 1
+
+[node name="RankingPopup" parent="." unique_id=1218246262 instance=ExtResource("2_44o3x")]
+visible = false
+layout_mode = 1
+
+[node name="VBoxContainer" parent="RankingPopup" index="0" unique_id=227837818]
+anchors_preset = 15
+anchor_top = 0.0
+anchor_bottom = 1.0
+offset_top = 0.0
+offset_bottom = 0.0
+
+[node name="RankingPopUp" parent="RankingPopup/VBoxContainer" index="1" unique_id=6663644 instance=ExtResource("2_2o2qr")]
+process_mode = 2
+layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ConfigButton" to="." method="_on_config_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RankingButton" to="." method="_on_ranking_button_pressed"]
+
+[editable path="ConfigurePopup"]
+[editable path="ConfigurePopup/VBoxContainer/HBoxContainer/VolumeSlider"]
+[editable path="RankingPopup"]

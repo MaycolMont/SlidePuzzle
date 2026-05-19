@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dmly75rvi6kk0"]
+
+[ext_resource type="Script" uid="uid://cfiuomokig8xc" path="res://UI/pop_up.gd" id="1_drleo"]
+[ext_resource type="PackedScene" uid="uid://ctc85li0ygvuf" path="res://UI/slider_item.tscn" id="1_m41oe"]
+
+[node name="ConfigurePopUp" type="Control" unique_id=1065196086]
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -52.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+script = ExtResource("1_drleo")
+
+[node name="QuitButton" type="Button" parent="." unique_id=952676930]
+layout_direction = 3
+layout_mode = 0
+offset_right = 18.0
+offset_bottom = 31.0
+text = "X"
+
+[node name="HBoxContainer" type="VBoxContainer" parent="." unique_id=1648732037]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="MusicSlider" parent="HBoxContainer" unique_id=1528488934 instance=ExtResource("1_m41oe")]
+layout_mode = 2
+
+[node name="VolumeSlider" parent="HBoxContainer" unique_id=1591426909 instance=ExtResource("1_m41oe")]
+layout_mode = 2
+
+[node name="TitleLabel" parent="HBoxContainer/VolumeSlider" index="0" unique_id=567320421]
+text = "Volumen:"
+
+[node name="HSlider" parent="HBoxContainer/VolumeSlider/HBoxContainer" parent_id_path=PackedInt32Array(1591426909, 1484825346) index="0" unique_id=1325764495]
+ticks_position = 1
+
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+
+[editable path="HBoxContainer/VolumeSlider"]

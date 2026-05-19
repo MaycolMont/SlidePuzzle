@@ -1,8 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://0j4ckdircxvg"]
+[gd_scene format=3 uid="uid://0j4ckdircxvg"]
 
-[ext_resource type="Script" path="res://scripts/board.gd" id="1_s34ml"]
+[ext_resource type="Script" uid="uid://w8kpq37yv7ed" path="res://scripts/board.gd" id="1_s34ml"]
 [ext_resource type="PackedScene" uid="uid://ykamcttr3qhc" path="res://scenes/piece.tscn" id="2_b3pwp"]
 
-[node name="Board" type="Node2D"]
+[node name="Board" type="Node2D" unique_id=1285956347]
 script = ExtResource("1_s34ml")
 piece_scene = ExtResource("2_b3pwp")

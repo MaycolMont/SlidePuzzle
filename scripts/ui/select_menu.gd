@@ -56,3 +56,6 @@ func _on_play_button_pressed() -> void:
 	print_debug("Texture selected: %s" % Global.texture_resource)
 
 	get_tree().change_scene_to_file(Config.GAME_SCENE_PATH)
+
+func _on_return_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/UI/init.tscn")

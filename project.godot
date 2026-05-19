@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="SlidePuzzle"
-run/main_scene="uid://ifxd4v3xf42y"
+run/main_scene="uid://dyx34kk7wqcwk"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

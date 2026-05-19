@@ -12,10 +12,9 @@ func add_times() -> void:
 	var times: Dictionary = Global.game_data
 	for tab: Node in tabs:
 		var grid_size: int = int(str(tab.name)[0])
-		var container: VBoxContainer = tab.get_child(0)
 		if times.has(grid_size):
 			var tab_times: Array = times[grid_size]
-			_add_labels(tab_times, container)
+			_add_labels(tab_times, tab)
 
 ## Creates [Label] nodes for each time and adds them to the given container.
 func _add_labels(times: Array, container: VBoxContainer) -> void:
