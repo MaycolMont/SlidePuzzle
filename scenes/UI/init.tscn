@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://dyx34kk7wqcwk"]
 
+[ext_resource type="FontFile" uid="uid://cyl4ls0c437q1" path="res://assets/font/vcr_osd_mono/VCR_OSD_MONO_1.001.ttf" id="1_44o3x"]
 [ext_resource type="Script" uid="uid://dsn0tlg2ot42d" path="res://scripts/ui/init_manager.gd" id="1_jbbqw"]
 [ext_resource type="PackedScene" uid="uid://cknilos0lcemr" path="res://scenes/UI/ranking.tscn" id="2_2o2qr"]
 [ext_resource type="PackedScene" uid="uid://bakppda8lgrfd" path="res://scenes/UI/PopUp.tscn" id="2_44o3x"]
 [ext_resource type="PackedScene" uid="uid://ctc85li0ygvuf" path="res://UI/slider_item.tscn" id="3_y7v68"]
+
+[sub_resource type="Theme" id="Theme_y7v68"]
+default_font = ExtResource("1_44o3x")
 
 [node name="Init" type="Control" unique_id=148553526]
 layout_mode = 3
@@ -12,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_y7v68")
 script = ExtResource("1_jbbqw")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=920703786]

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cxdff40kwe4e" path="res://scripts/game.gd" id="1_hqe0d"]
 [ext_resource type="PackedScene" uid="uid://0j4ckdircxvg" path="res://scenes/board.tscn" id="2_l131m"]
 [ext_resource type="Texture2D" uid="uid://cj4661154yppa" path="res://icon.svg" id="3_f707q"]
+[ext_resource type="Theme" uid="uid://b3o1jowwqpd4v" path="res://assets/default_theme.tres" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bx78gd70gbhiu" path="res://scenes/UI/time_label.tscn" id="4_ox6at"]
 [ext_resource type="Script" uid="uid://d7aaae70bin8" path="res://scripts/ui/confirm_popup.gd" id="5_iywne"]
 
@@ -10,7 +11,7 @@
 script = ExtResource("1_hqe0d")
 texture_preview = NodePath("MainContainer/VBoxContainer/HBoxContainer/Preview")
 board_scene = ExtResource("2_l131m")
-time_label = NodePath("MainContainer/VBoxContainer/HBoxContainer/TimeLabel")
+time_label = NodePath("MainContainer/VBoxContainer/HBoxContainer/VBoxContainer/TimeLabel")
 board_container = NodePath("MainContainer/VBoxContainer/BoardContainer")
 
 [node name="MainContainer" type="MarginContainer" parent="." unique_id=1372566814]
@@ -19,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_p57ef")
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 14
@@ -30,26 +32,36 @@ theme_override_constants/separation = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/VBoxContainer" unique_id=16154039]
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 6
 
 [node name="Preview" type="TextureRect" parent="MainContainer/VBoxContainer/HBoxContainer" unique_id=384291528]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
-size_flags_horizontal = 3
 texture = ExtResource("3_f707q")
-expand_mode = 1
-stretch_mode = 4
+expand_mode = 2
 
-[node name="TimeLabel" parent="MainContainer/VBoxContainer/HBoxContainer" unique_id=1170515218 instance=ExtResource("4_ox6at")]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/VBoxContainer/HBoxContainer" unique_id=1527505120]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+alignment = 1
+
+[node name="TimeLabel" parent="MainContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1170515218 instance=ExtResource("4_ox6at")]
 layout_mode = 2
 size_flags_horizontal = 10
 horizontal_alignment = 2
 label_text = "Time"
 
-[node name="BoardContainer" type="PanelContainer" parent="MainContainer/VBoxContainer" unique_id=1375399955]
-clip_contents = true
+[node name="MovementLabel" type="Label" parent="MainContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1775387683]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 8
+text = "Movimientos: "
+
+[node name="BoardContainer" type="PanelContainer" parent="MainContainer/VBoxContainer" unique_id=1375399955]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 4.0
 mouse_filter = 2
 
 [node name="ConfirmPopup" type="CenterContainer" parent="." unique_id=1228682878 groups=["popup"]]
@@ -62,6 +74,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_p57ef")
 script = ExtResource("5_iywne")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ConfirmPopup" unique_id=1229930998]
@@ -93,6 +106,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_p57ef")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="WinPopup" unique_id=835505788]
 layout_mode = 2

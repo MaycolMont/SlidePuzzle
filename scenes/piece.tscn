@@ -1,15 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://ykamcttr3qhc"]
+[gd_scene format=3 uid="uid://ykamcttr3qhc"]
 
-[ext_resource type="Script" path="res://scripts/piece.gd" id="1_3olgu"]
+[ext_resource type="Script" uid="uid://c8os8ocv4xgey" path="res://scripts/piece.gd" id="1_3olgu"]
+[ext_resource type="AudioStream" uid="uid://cq34qnjn44yoo" path="res://assets/sound/wood_slide.mp3" id="2_s58gp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_by515"]
 
-[node name="Piece" type="Area2D"]
+[node name="Piece" type="Area2D" unique_id=288090599]
 script = ExtResource("1_3olgu")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2006177]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=81513188]
 shape = SubResource("RectangleShape2D_by515")
+
+[node name="SlideAudio" type="AudioStreamPlayer" parent="." unique_id=422810209]
+stream = ExtResource("2_s58gp")
+volume_db = -0.305
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

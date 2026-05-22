@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://by12t4gmh821o"]
+
+[ext_resource type="Texture2D" uid="uid://cj4661154yppa" path="res://icon.svg" id="1_wa0mj"]
+[ext_resource type="Script" uid="uid://ts3uf13c46cn" path="res://scripts/ui/mybutton.gd" id="2_ey47l"]
+
+[node name="Control" type="Control" unique_id=575468468]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=590668639]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer" unique_id=653982450]
+layout_mode = 2
+texture_normal = ExtResource("1_wa0mj")
+script = ExtResource("2_ey47l")
+
+[node name="TextureButton2" type="TextureButton" parent="HBoxContainer" unique_id=304880885]
+layout_mode = 2
+texture_normal = ExtResource("1_wa0mj")
+script = ExtResource("2_ey47l")
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=614067452]
+layout_mode = 2
+text = "hola"

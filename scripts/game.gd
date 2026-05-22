@@ -61,3 +61,6 @@ func _on_board_solved(number_of_movements: int) -> void:
 	%TimeLabel.text += time_label.time_text
 	%MovementsLabel.text += str(number_of_movements)
 	$WinPopup.show()
+	
+func _on_piece_moved():
+	pass
