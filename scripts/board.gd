@@ -107,8 +107,7 @@ func _on_piece_moved(correct_moved: int, preview_position: Vector2) -> void:
 	free_position = preview_position
 	print_debug("Pieces in correct position: %d" % points)
 
-	if points == 4: #debug
-	#if points == total_pieces:
+	if points == total_pieces:
 		solved.emit(number_of_movements)
 		print_debug("Solved emit")
 

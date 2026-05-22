@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://b3o1jowwqpd4v" path="res://assets/default_theme.tres" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bx78gd70gbhiu" path="res://scenes/UI/time_label.tscn" id="4_ox6at"]
 [ext_resource type="Script" uid="uid://d7aaae70bin8" path="res://scripts/ui/confirm_popup.gd" id="5_iywne"]
+[ext_resource type="AudioStream" uid="uid://dqhom4oasax01" path="res://assets/sound/victory.mp3" id="7_u5sy4"]
 
 [node name="Game" type="CanvasLayer" unique_id=535956547 node_paths=PackedStringArray("texture_preview", "time_label", "board_container")]
 script = ExtResource("1_hqe0d")
@@ -93,40 +94,56 @@ text = "Aceptar"
 layout_mode = 2
 text = "Cancelar"
 
-[node name="WinPopup" type="CenterContainer" parent="." unique_id=1758689964 groups=["popup"]]
+[node name="WinPopUp" type="Panel" parent="." unique_id=2070963013 groups=["popup"]]
 process_mode = 2
 visible = false
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -93.0
+offset_right = -14.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_p57ef")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="WinPopup" unique_id=835505788]
+[node name="VBoxContainer" type="VBoxContainer" parent="WinPopUp" unique_id=835505788]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -56.0
+offset_right = 77.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="WinPopUp/VBoxContainer" unique_id=170032455]
+unique_name_in_owner = true
 layout_mode = 2
+text = "!Puzzle completado¡"
 
-[node name="Title" type="Label" parent="WinPopup/VBoxContainer" unique_id=170032455]
-layout_mode = 2
-text = "Puzzle completado"
-
-[node name="TimeLabel" type="Label" parent="WinPopup/VBoxContainer" unique_id=127218790]
+[node name="TimeLabel" type="Label" parent="WinPopUp/VBoxContainer" unique_id=127218790]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Tiempo: "
 
-[node name="MovementsLabel" type="Label" parent="WinPopup/VBoxContainer" unique_id=894141372]
+[node name="MovementsLabel" type="Label" parent="WinPopUp/VBoxContainer" unique_id=894141372]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Movimientos: "
 
-[node name="HBoxContainer" type="HBoxContainer" parent="WinPopup/VBoxContainer" unique_id=319196778]
-layout_mode = 2
-
-[node name="MenuButton" type="Button" parent="WinPopup/VBoxContainer/HBoxContainer" unique_id=699971256]
+[node name="MenuButton" type="Button" parent="WinPopUp/VBoxContainer" unique_id=699971256]
 layout_mode = 2
 text = "Ir a menu"
 
+[node name="WinAudio" type="AudioStreamPlayer" parent="." unique_id=1281281180]
+stream = ExtResource("7_u5sy4")
+
 [connection signal="pressed" from="ConfirmPopup/VBoxContainer/HBoxContainer/Confirm" to="." method="_go_to_menu"]
 [connection signal="pressed" from="ConfirmPopup/VBoxContainer/HBoxContainer/Cancel" to="ConfirmPopup" method="_on_cancel_pressed"]
-[connection signal="pressed" from="WinPopup/VBoxContainer/HBoxContainer/MenuButton" to="." method="_go_to_menu"]
+[connection signal="pressed" from="WinPopUp/VBoxContainer/MenuButton" to="." method="_go_to_menu"]

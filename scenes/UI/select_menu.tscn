@@ -7,7 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://cx2gbo3623l4p" path="res://assets/sprites/images/linda_noche.jpg" id="5_i2ak8"]
 [ext_resource type="Script" uid="uid://ts3uf13c46cn" path="res://scripts/ui/mybutton.gd" id="6_cxj07"]
 [ext_resource type="AudioStream" uid="uid://bmibatx300r47" path="res://assets/sound/whoosh.mp3" id="6_tbtqa"]
+[ext_resource type="Texture2D" uid="uid://dgnshv8q2vtqj" path="res://assets/sprites/images/spiderman.png" id="7_ja57p"]
 [ext_resource type="AudioStream" uid="uid://714s66dhgx6b" path="res://assets/sound/tap_confirm.mp3" id="8_ttai1"]
+[ext_resource type="Texture2D" uid="uid://6k0ge42of3m0" path="res://assets/sprites/images/hollow.jpg" id="8_ywp10"]
+[ext_resource type="Texture2D" uid="uid://nodmtdri54gi" path="res://assets/sprites/images/weird_bird.jpg" id="9_pgkvx"]
+[ext_resource type="Texture2D" uid="uid://cj4661154yppa" path="res://icon.svg" id="10_av7tn"]
+[ext_resource type="Texture2D" uid="uid://ceshatnafyqos" path="res://assets/sprites/images/snowman.png" id="10_ywp10"]
 
 [sub_resource type="Theme" id="Theme_4qqln"]
 
@@ -46,7 +51,6 @@ layout_mode = 2
 text = "Selecciona una imagen"
 
 [node name="ImagesSelector" type="GridContainer" parent="MainContainer/VBoxContainer" unique_id=1997593900]
-unique_name_in_owner = true
 layout_mode = 2
 columns = 3
 
@@ -72,6 +76,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 toggle_mode = true
 button_group = ExtResource("2_nklkf")
+texture_normal = ExtResource("7_ja57p")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("6_cxj07")
@@ -85,6 +90,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 toggle_mode = true
 button_group = ExtResource("2_nklkf")
+texture_normal = ExtResource("8_ywp10")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("6_cxj07")
@@ -98,6 +104,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 toggle_mode = true
 button_group = ExtResource("2_nklkf")
+texture_normal = ExtResource("9_pgkvx")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("6_cxj07")
@@ -111,6 +118,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 toggle_mode = true
 button_group = ExtResource("2_nklkf")
+texture_normal = ExtResource("10_ywp10")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("6_cxj07")
@@ -124,6 +132,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 toggle_mode = true
 button_group = ExtResource("2_nklkf")
+texture_normal = ExtResource("10_av7tn")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("6_cxj07")

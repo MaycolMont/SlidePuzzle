@@ -15,9 +15,10 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="SlidePuzzle"
+config/version="1.0.0"
 run/main_scene="uid://dyx34kk7wqcwk"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://cedvl3uaf22l7"
 
 [autoload]
 
@@ -28,6 +29,7 @@ Config="*res://config/Config.gd"
 
 window/size/viewport_width=250
 window/size/viewport_height=400
+window/size/resizable=false
 
 [editor]
 

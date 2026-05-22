@@ -56,11 +56,22 @@ func _go_to_menu() -> void:
 
 ## Called when the board is solved. Saves the time and shows the win popup.
 func _on_board_solved(number_of_movements: int) -> void:
-	Global.save_time(time_label.get_time())
+	var time: int = time_label.get_time()
+
+	var is_best: bool = false
+	if Global.game_data.has(Global.grid_size):
+		is_best = time < Global.game_data[Global.grid_size][0]
+	else:
+		is_best = true
+
+	Global.save_time(time)
+
+	if is_best:
+		%Title.text = "!Nuevo Record¡"
+
 	get_tree().paused = true
 	%TimeLabel.text += time_label.time_text
 	%MovementsLabel.text += str(number_of_movements)
-	$WinPopup.show()
+	$WinPopUp.show()
+	$WinAudio.play()
 	
-func _on_piece_moved():
-	pass
