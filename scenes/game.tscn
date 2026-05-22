@@ -50,12 +50,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 10
 horizontal_alignment = 2
-label_text = "Time"
-
-[node name="MovementLabel" type="Label" parent="MainContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1775387683]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "Movimientos: "
+label_text = "Tiempo"
 
 [node name="BoardContainer" type="PanelContainer" parent="MainContainer/VBoxContainer" unique_id=1375399955]
 custom_minimum_size = Vector2(0, 220)
@@ -96,7 +91,7 @@ text = "Aceptar"
 
 [node name="Cancel" type="Button" parent="ConfirmPopup/VBoxContainer/HBoxContainer" unique_id=298693796]
 layout_mode = 2
-text = "Salir"
+text = "Cancelar"
 
 [node name="WinPopup" type="CenterContainer" parent="." unique_id=1758689964 groups=["popup"]]
 process_mode = 2

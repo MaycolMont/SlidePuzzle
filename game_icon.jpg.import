@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5vdvl71i057p"
-path="res://.godot/imported/snowman1.png-93ec9bad93efdd32af35aca6d8ea2497.ctex"
+uid="uid://cedvl3uaf22l7"
+path="res://.godot/imported/game_icon.jpg-16364fcf8c4bc7fde73dd24b79cc41b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/images/snowman1.png"
-dest_files=["res://.godot/imported/snowman1.png-93ec9bad93efdd32af35aca6d8ea2497.ctex"]
+source_file="res://game_icon.jpg"
+dest_files=["res://.godot/imported/game_icon.jpg-16364fcf8c4bc7fde73dd24b79cc41b9.ctex"]
 
 [params]
 

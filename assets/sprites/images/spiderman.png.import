@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dupfjonvdesnn"
-path="res://.godot/imported/weird_bird1.jpg-ea15ce1aa79ae51154191fea0724757b.ctex"
+uid="uid://dgnshv8q2vtqj"
+path="res://.godot/imported/spiderman.png-bdb40cfbad2af1ae473d2b7bed0c1052.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/images/weird_bird1.jpg"
-dest_files=["res://.godot/imported/weird_bird1.jpg-ea15ce1aa79ae51154191fea0724757b.ctex"]
+source_file="res://assets/sprites/images/spiderman.png"
+dest_files=["res://.godot/imported/spiderman.png-bdb40cfbad2af1ae473d2b7bed0c1052.ctex"]
 
 [params]
 

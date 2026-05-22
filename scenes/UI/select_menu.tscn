@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cx2gbo3623l4p" path="res://assets/sprites/images/linda_noche.jpg" id="5_i2ak8"]
 [ext_resource type="Script" uid="uid://ts3uf13c46cn" path="res://scripts/ui/mybutton.gd" id="6_cxj07"]
 [ext_resource type="AudioStream" uid="uid://bmibatx300r47" path="res://assets/sound/whoosh.mp3" id="6_tbtqa"]
+[ext_resource type="AudioStream" uid="uid://714s66dhgx6b" path="res://assets/sound/tap_confirm.mp3" id="8_ttai1"]
 
 [sub_resource type="Theme" id="Theme_4qqln"]
 
@@ -49,7 +50,7 @@ unique_name_in_owner = true
 layout_mode = 2
 columns = 3
 
-[node name="Button" type="TextureButton" parent="MainContainer/VBoxContainer/ImagesSelector" unique_id=352587610 node_paths=PackedStringArray("audio_player")]
+[node name="Button" type="TextureButton" parent="MainContainer/VBoxContainer/ImagesSelector" unique_id=352587610 node_paths=PackedStringArray("hover_audio", "confirm_audio")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -61,10 +62,11 @@ texture_normal = ExtResource("5_i2ak8")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("6_cxj07")
-audio_player = NodePath("../../../../WhoosAudio")
+hover_audio = NodePath("../../../../WhoosAudio")
+confirm_audio = NodePath("../../../../ConfirmAudio")
 metadata/_custom_type_script = "uid://ts3uf13c46cn"
 
-[node name="Button2" type="TextureButton" parent="MainContainer/VBoxContainer/ImagesSelector" unique_id=1757626986 node_paths=PackedStringArray("audio_player")]
+[node name="Button2" type="TextureButton" parent="MainContainer/VBoxContainer/ImagesSelector" unique_id=1757626986 node_paths=PackedStringArray("hover_audio", "confirm_audio")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -73,10 +75,11 @@ button_group = ExtResource("2_nklkf")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("6_cxj07")
-audio_player = NodePath("../../../../WhoosAudio")
+hover_audio = NodePath("../../../../WhoosAudio")
+confirm_audio = NodePath("../../../../ConfirmAudio")
 metadata/_custom_type_script = "uid://ts3uf13c46cn"
 
-[node name="Button3" type="TextureButton" parent="MainContainer/VBoxContainer/ImagesSelector" unique_id=70007368 node_paths=PackedStringArray("audio_player")]
+[node name="Button3" type="TextureButton" parent="MainContainer/VBoxContainer/ImagesSelector" unique_id=70007368 node_paths=PackedStringArray("hover_audio", "confirm_audio")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -85,10 +88,11 @@ button_group = ExtResource("2_nklkf")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("6_cxj07")
-audio_player = NodePath("../../../../WhoosAudio")
+hover_audio = NodePath("../../../../WhoosAudio")
+confirm_audio = NodePath("../../../../ConfirmAudio")
 metadata/_custom_type_script = "uid://ts3uf13c46cn"
 
-[node name="Button4" type="TextureButton" parent="MainContainer/VBoxContainer/ImagesSelector" unique_id=684256803 node_paths=PackedStringArray("audio_player")]
+[node name="Button4" type="TextureButton" parent="MainContainer/VBoxContainer/ImagesSelector" unique_id=684256803 node_paths=PackedStringArray("hover_audio", "confirm_audio")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -97,10 +101,11 @@ button_group = ExtResource("2_nklkf")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("6_cxj07")
-audio_player = NodePath("../../../../WhoosAudio")
+hover_audio = NodePath("../../../../WhoosAudio")
+confirm_audio = NodePath("../../../../ConfirmAudio")
 metadata/_custom_type_script = "uid://ts3uf13c46cn"
 
-[node name="Button5" type="TextureButton" parent="MainContainer/VBoxContainer/ImagesSelector" unique_id=1672493087 node_paths=PackedStringArray("audio_player")]
+[node name="Button5" type="TextureButton" parent="MainContainer/VBoxContainer/ImagesSelector" unique_id=1672493087 node_paths=PackedStringArray("hover_audio", "confirm_audio")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -109,10 +114,11 @@ button_group = ExtResource("2_nklkf")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("6_cxj07")
-audio_player = NodePath("../../../../WhoosAudio")
+hover_audio = NodePath("../../../../WhoosAudio")
+confirm_audio = NodePath("../../../../ConfirmAudio")
 metadata/_custom_type_script = "uid://ts3uf13c46cn"
 
-[node name="Button6" type="TextureButton" parent="MainContainer/VBoxContainer/ImagesSelector" unique_id=1958336141 node_paths=PackedStringArray("audio_player")]
+[node name="Button6" type="TextureButton" parent="MainContainer/VBoxContainer/ImagesSelector" unique_id=1958336141 node_paths=PackedStringArray("hover_audio", "confirm_audio")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -121,7 +127,8 @@ button_group = ExtResource("2_nklkf")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("6_cxj07")
-audio_player = NodePath("../../../../WhoosAudio")
+hover_audio = NodePath("../../../../WhoosAudio")
+confirm_audio = NodePath("../../../../ConfirmAudio")
 metadata/_custom_type_script = "uid://ts3uf13c46cn"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MainContainer" unique_id=1136021298]
@@ -167,6 +174,9 @@ text = "Play"
 
 [node name="WhoosAudio" type="AudioStreamPlayer" parent="." unique_id=485336494]
 stream = ExtResource("6_tbtqa")
+
+[node name="ConfirmAudio" type="AudioStreamPlayer" parent="." unique_id=746391056]
+stream = ExtResource("8_ttai1")
 
 [connection signal="pressed" from="MainContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="MainContainer/PlayButton" to="." method="_on_play_button_pressed"]

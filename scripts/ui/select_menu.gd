@@ -11,10 +11,10 @@ extends MarginContainer
 ## Must match the number of TextureButton children in the ImagesSelector GridContainer.
 const IMAGE_FILES: Array[String] = [
 	"linda_noche.jpg",
+	"spiderman.png",
 	"weird_bird.jpg",
-	"weird_bird1.jpg",
 	"snowman.png",
-	"snowman1.png",
+	"hollow.jpg",
 	"icon1.svg",
 ]
 

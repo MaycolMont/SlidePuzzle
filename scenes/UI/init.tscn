@@ -66,11 +66,10 @@ process_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="MusicSlider" parent="ConfigurePopup/VBoxContainer/HBoxContainer" unique_id=1528488934 instance=ExtResource("3_y7v68")]
+[node name="VolumeSlider" parent="ConfigurePopup/VBoxContainer/HBoxContainer" unique_id=1057708370 node_paths=PackedStringArray("slider", "percentage_label") instance=ExtResource("3_y7v68")]
 layout_mode = 2
-
-[node name="VolumeSlider" parent="ConfigurePopup/VBoxContainer/HBoxContainer" unique_id=1057708370 instance=ExtResource("3_y7v68")]
-layout_mode = 2
+slider = NodePath("HBoxContainer/HSlider")
+percentage_label = NodePath("TitleLabel")
 
 [node name="TitleLabel" parent="ConfigurePopup/VBoxContainer/HBoxContainer/VolumeSlider" index="0" unique_id=567320421]
 text = "Volumen:"
