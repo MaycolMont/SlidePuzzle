@@ -21,6 +21,9 @@ var correct_position: Vector2
 ## Internal [RayCast2D] used for collision detection.
 var raycast: RayCast2D
 
+## Duration of the movement animation in seconds.
+var move_duration: float = 0.15
+
 func _ready() -> void:
 	_set_dimensions()
 	_add_raycast()
@@ -53,15 +56,23 @@ func _get_free_direction() -> Vector2:
 
 ## Moves the piece by [direction] and emits [signal moved].
 ## Tracks whether the piece enters or leaves its correct position.
+## Uses a Tween for smooth, quick animation.
 func _move(direction: Vector2) -> void:
 	var correct_move: int = 0
 	if is_in_correct():
 		correct_move = -1
 	current_position += direction
+	var target_position: Vector2 = current_position - direction
 	if is_in_correct():
 		correct_move = 1
-	moved.emit(correct_move, current_position - direction)
-	position += direction * size
+
+	var target_visual: Vector2 = position + direction * size
+	var tween: Tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "position", target_visual, move_duration)
+	tween.tween_callback(moved.emit.bind(correct_move, target_position))
+	$SlideAudio.play()
 #endregion
 
 #region public methods
